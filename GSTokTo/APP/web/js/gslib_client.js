@@ -660,6 +660,10 @@ obj.setWidth=function(w){
 this.style.width=w
 }
 
+obj.setHeight=function(w){
+this.style.height=w
+}
+
 obj.setText=function(s){
 	try{
 	this.innerHTML=s

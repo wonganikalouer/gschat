@@ -1,19 +1,72 @@
 #main_button{
-	position: fixed;
 	width: 350px;
 	padding-top: 10px;
 	padding-bottom: 10px;
 	float: left;
-	border-top-left-radius: 20px;
-	border-top-right-radius: 20px;
-	background: #a50080;
+	background:darkorange;
 	border:0px;
 	color: white;
 	font-weight: bold;
 	cursor: pointer;	
-	z-index: 200;
 }
 
 #main_button:hover{
 
+}
+
+.main-div{
+	position: fixed;
+	float: left;
+	height: 36px;
+	width: 350px;
+	z-index: 20;
+	background: rgba(0,0,0,0.2);
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	overflow: hidden;
+	transition: 500ms ease-in-out;
+	-webkit-transition: 500ms ease-in-out;
+}
+
+.chat-board{
+	width: 100%;
+	float: left;
+	height: 270px;
+	background: rgba(0,0,0,0.2);
+	overflow: hidden;
+	overflow-y: scroll;
+	padding-bottom: 50px;
+}
+
+#gs-input{
+	width: 80%;
+	float: left;
+	height: 30px;
+	background: transparent;
+	margin-top: 5px;
+	border:0px;
+	padding-left: 10px;	
+}
+
+
+#-tokto-message-client{
+	width: 60%;
+	float: left;
+	margin-top:10px;
+	margin-left: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	background: white;
+}
+
+#-tokto-message-agent{
+	width: 60%;
+	float: right;
+	margin-top:10px;
+	margin-right: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	background: white;
 }
