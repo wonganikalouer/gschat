@@ -1,10 +1,14 @@
 require("settings_tokto.js")
 require("css/gstokto.css")
+var sent=new Audio()
+sent.src="fx/sent2.wav"
 function _ready() {
+	
 	var b=create("button")
 	b.id="main_button"
 	b.innerHTML=button_label
 	b.value=button_label
+	b.style.backgroundColor=heading_color
 	b.onclick=function(argument) {
 		if (menu_state) {
 			menu_state=false
@@ -30,6 +34,7 @@ function _ready() {
 
 	//where the user types his codes
 	var mesage_field=create("div")
+	mesage_field.className="gs-message-field"
 	var input=create("input")
 	input.type="text"
 	input.id="gs-input"
@@ -39,6 +44,8 @@ function _ready() {
 			var message=input.value
 			if(message!=""){
 			renderMessage(message)
+			// connect to a bot through this code
+			//tokbot.main_method(message)
 			}
 			input.value=""
 		}
@@ -59,12 +66,33 @@ function renderMessage(msg) {
 	setValue("#main_button","Agent [typing]")
 	
 	get(".chat-board").appendChild(mes_holder)
-	// var h=get(".chat-board").children
-	// var t=h[h.lenth-1]
-	// t.scrollToView()
-	setTimeout(fakeMessageResponse,3000)
+	mes_holder.scrollIntoView()
+	mes_holder.animate("showMessage 300ms ease-in-out")
+	// sent.play()
+	// setTimeout(fakeMessageResponse,3000)
+	try{talkBot(user_message)}catch(err){
+		Toast(err)
+	}
 }
 
+var resp
+function renderResponse(response) {
+	var date=new Date()
+	var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+	resp="<i>"+date.getDay()+" "+months[date.getMonth()]+" "+date.getFullYear()+" | "+date.getHours()+" : "+date.getMinutes()+" : "+date.getSeconds()+"</i><br>"+response
+	setTimeout(delayRespose,delay)
+}
+
+function delayRespose(argument) {
+	var mes_holder=create("div")
+	mes_holder.id="-tokto-message-agent"
+	mes_holder.innerHTML=resp
+	setValue("#main_button",agent_name+" (online)")
+	get(".chat-board").appendChild(mes_holder)
+	mes_holder.scrollIntoView()
+	mes_holder.animate("showMessage 300ms ease-in-out")
+	sent.play()
+}
 
 function fakeMessageResponse() {
 	var msg=get("#gs-input")
@@ -74,6 +102,9 @@ function fakeMessageResponse() {
 	mes_holder.innerHTML=generated_response
 	setValue("#main_button",agent_name+" (online)")
 	get(".chat-board").appendChild(mes_holder)
+	mes_holder.scrollIntoView()
+	mes_holder.animate("showMessage 300ms ease-in-out")
+	sent.play()
 }
 
 function generateMessage(m) {
@@ -81,7 +112,7 @@ function generateMessage(m) {
 	if (method=="GET"){
 	for(var i=0;i<commands.length;i++){
 		switch(commands[i]){
-			case "hi":{
+			case "hi" || "hello" || "hey":{
 				Toast("--Greetings!--")
 				return "Hello, My name is GSTalk-Bot. How may i serve you?"
 				break;
@@ -103,6 +134,9 @@ function generateMessage(m) {
 		}
 	}
 	return "Am sorry, I seem not to understand what you are saying"
+}else{
+	method="GET"
+	return "Thank you for chatting with us. If you need more service talk to our live Bot"
 }
 }
 
@@ -114,4 +148,8 @@ function liveAgent() {
 	method="POST"
 	setValue("#main_button",agent_name+" (online)")
 	get(".chat-board").appendChild(mes_holder)
+	mes_holder.scrollIntoView()
+	mes_holder.animate("showMessage 300ms ease-in-out")
+	sent.play()
 }
+

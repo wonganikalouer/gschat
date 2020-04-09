@@ -4,3 +4,6 @@ var menu_state=false
 var user_message=""
 var method="GET"
 var agent_name="GSTok-Bot"
+var sfx_receive="fx/sent.wav"
+var delay=2000 //2 seconds default delay
+var heading_color="#a50080"
