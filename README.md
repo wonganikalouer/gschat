@@ -1,4 +1,4 @@
-# gschat
+# gschat-bot-agent
 This is a user - website - agent dialog flow application
 #TAKE NOTE: 
 #This project is running on the greenswitch library, see the green switch js library for more details
