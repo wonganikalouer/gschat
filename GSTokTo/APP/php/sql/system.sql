@@ -1,0 +1,3 @@
+CREATE TABLE activechats(
+	id int(5) PRIMARY KEY AUTO_INCREMENT ,
+)
